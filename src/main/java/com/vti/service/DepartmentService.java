@@ -32,14 +32,17 @@ public class DepartmentService implements IDepartmentService {
 	@Autowired
 	private IAccountRepository accountRepository;
 
-	public Page<Department> getAllDepartments(Pageable page,SearchDepartment search, FilterDepartment filter) throws ParseException {
+	public Page<Department> getAllDepartments(Pageable page,
+												SearchDepartment search, 
+												FilterDepartment filter) throws ParseException {
 		Specification<Department> where = null;
 		if(search != null & search.getName() != null) {
 			where = new DepartmentSpecification("name", "LIKE", search.getName()); 
 		}
 		
 		if(search != null & search.getAuthor() != null) {
-			DepartmentSpecification searchAuthorDepartmentSpecification = new DepartmentSpecification("author", "LIKES", search.getAuthor()); 
+			DepartmentSpecification searchAuthorDepartmentSpecification =
+					new DepartmentSpecification("author", "LIKES", search.getAuthor()); 
 			if(where == null) {
 				where = searchAuthorDepartmentSpecification;
 			}else {
