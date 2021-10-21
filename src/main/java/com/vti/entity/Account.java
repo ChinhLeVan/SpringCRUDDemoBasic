@@ -44,6 +44,9 @@ public class Account implements Serializable {
 
 	@Formula(" concat(FirstName, ' ', LastName) ")
 	private String fullName;
+	
+	@Column(name = "`password`", nullable = false, length = 800)
+	private String password;
 
 	@ManyToOne
 	@JoinColumn(name = "DepartmentID", nullable = true)
@@ -51,6 +54,9 @@ public class Account implements Serializable {
 
 	@OneToMany(mappedBy = "author")
 	private List<Department> createdDepartment;
+	
+	@Column(name = "role", nullable = false)
+	private String role;
 
 	@Column(name = "CreateDate")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -82,6 +88,22 @@ public class Account implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getFirstName() {
