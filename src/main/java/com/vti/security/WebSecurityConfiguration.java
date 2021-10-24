@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
 import com.vti.service.IAccountService;
@@ -33,6 +34,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.and()
 			.httpBasic()
 			.and()
-			.csrf().disable();
+			.csrf().disable()
+			.addFilterBefore(new JWTAuthenticationFilter("/api/v1/login",authenticationManager(), service), UsernamePasswordAuthenticationFilter.class);
 	}
 }
