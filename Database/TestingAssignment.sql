@@ -20,10 +20,14 @@ CREATE TABLE `Account`(
 	AccountID				TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     Email					VARCHAR(50) NOT NULL UNIQUE KEY, 
     Username				VARCHAR(50) NOT NULL UNIQUE KEY, 
+    `password`				VARCHAR(800) NOT NULL,
     FirstName				NVARCHAR(50) NOT NULL,
     LastName				NVARCHAR(50) NOT NULL,	
     DepartmentID 			TINYINT UNSIGNED,	
-    CreateDate				DATETIME DEFAULT NOW(), 
+    `role` 					ENUM('Admin','Employee','Manager') NOT NULL DEFAULT 'Employee',
+    CreateDate				DATETIME DEFAULT NOW(),
+    
+        
     FOREIGN KEY(DepartmentID) REFERENCES Department(DepartmentID)  ON DELETE SET NULL
 );
 

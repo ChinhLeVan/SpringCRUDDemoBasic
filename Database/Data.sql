@@ -14,17 +14,17 @@ VALUES                  (N'Marketing'	,	5		,   '1'		,	'2018-03-05',	'2020-03-05'
 						(N'Bán hàng'	,	5		,   '10'	,	'2017-04-09',	'2020-04-09');
 
 -- Add data Account
-INSERT INTO `Account`(Email								, Username			, FirstName,	LastName,		 DepartmentID	,	CreateDate)
-VALUES 				('haidang29productions@gmail.com'	, 'dangblack'		,'Dang'	,		'Nguyen Hai'	,   '1'			,	'2018-03-05'),
-					('account1@gmail.com'				, 'quanganh'		,'Anh'	,		'Tong Quang'	,   '1'			,	'2019-03-05'),
-                    ('account2@gmail.com'				, 'vanchien'		,'Chien',		'Nguyen Van'	,   '1'			,	'2017-03-07'),
-                    ('account3@gmail.com'				, 'cocoduongqua'	,'Do'	,		'Duong'			,   '3'			,	'2021-03-08'),
-                    ('account4@gmail.com'				, 'doccocaubai'		,'Thang',		'Nguyen Chien'  ,   '4'			,	'2016-03-10'),
-                    ('dapphatchetngay@gmail.com'		, 'khabanh'			,'Kha'	,		'Ngo Ba'		,   '6'			,	NOW()),
-                    ('songcodaoly@gmail.com'			, 'huanhoahong'		,'Huan'	,		'Bui Xuan'		,   '7'			,	NOW()),
-                    ('sontungmtp@gmail.com'				, 'tungnui'			,'Tung'	,		'Nguyen Thanh'	,   '8'			,	'2015-04-07'),
-                    ('duongghuu@gmail.com'				, 'duongghuu'		,'Huu'	,		'Duong Van'		,   '9'			,	'2014-04-07'),
-                    ('vtiaccademy@gmail.com'			, 'vtiaccademy'		,'Ai'	,		'Vi Ti'			,   '10'		,	'2017-04-09');
-
-ALTER TABLE Department
-ADD FOREIGN KEY (author_id) REFERENCES `Account`(AccountID) ON DELETE CASCADE;
+INSERT INTO `Account`(Email								, Username			, FirstName,	LastName,		 	`password`,														`role`,					DepartmentID	,	CreateDate)
+VALUES 				('haidang29productions@gmail.com'	, 'dangblack'		,'Dang'	,		'Nguyen Hai'	,   '$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi', 'Manager'	,				'1'			,	'2018-03-05'),
+					('account1@gmail.com'				, 'quanganh'		,'Anh'	,		'Tong Quang'	,   '$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi', 'Manager'	,				'1'			,	'2019-03-05'),
+                    ('account2@gmail.com'				, 'vanchien'		,'Chien',		'Nguyen Van'	,   '$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi', 'Manager'	,				'1'			,	'2017-03-07'),
+                    ('account3@gmail.com'				, 'cocoduongqua'	,'Do'	,		'Duong'			,   '$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi', 'Manager'	,				'3'			,	'2021-03-08'),
+                    ('account4@gmail.com'				, 'doccocaubai'		,'Thang',		'Nguyen Chien'  ,   '$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi', 'Manager'	,				'4'			,	'2016-03-10'),
+                    ('dapphatchetngay@gmail.com'		, 'khabanh'			,'Kha'	,		'Ngo Ba'		,   '$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi', 'Manager'	,				'6'			,	NOW()),
+                    ('songcodaoly@gmail.com'			, 'huanhoahong'		,'Huan'	,		'Bui Xuan'		,   '$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi', 'Employee'	,				'7'			,	NOW()),
+                    ('sontungmtp@gmail.com'				, 'tungnui'			,'Tung'	,		'Nguyen Thanh'	,   '$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi', 'Employee'	,				'8'			,	'2015-04-07'),
+                    ('duongghuu@gmail.com'				, 'duongghuu'		,'Huu'	,		'Duong Van'		,   '$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi', 'Admin'		,				'9'			,	'2014-04-07'),
+                    ('vtiaccademy@gmail.com'			, 'vtiaccademy'		,'Ai'	,		'Vi Ti'			,   '$2a$10$W2neF9.6Agi6kAKVq8q3fec5dHW8KUA.b0VSIGdIZyUravfLpyIFi', 'Manager'	,				'10'		,	'2017-04-09');
+                                                                                                              
+ALTER TABLE Department                                                                                        
+ADD FOREIGN KEY (author_id) REFERENCES `Account`(AccountID) ON DELETE CASCADE;                                
