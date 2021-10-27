@@ -146,12 +146,6 @@ public class Account implements Serializable {
 		this.department = department;
 	}
 
-	public List<Department> getCreatedDepartment() {
-		return createdDepartment;
-	}
-
-	public void setCreatedDepartment(List<Department> createdDepartment) {
-		this.createdDepartment = createdDepartment;
-	}
+	
 
 }

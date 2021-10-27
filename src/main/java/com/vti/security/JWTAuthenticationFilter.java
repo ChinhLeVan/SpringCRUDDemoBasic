@@ -17,16 +17,20 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.vti.entity.Account;
 import com.vti.service.IAccountService;
+import com.vti.service.ITokenService;
 import com.vti.service.JWTTokenService;
 
 public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 	
 	private IAccountService service;
 	
-    public JWTAuthenticationFilter(String url, AuthenticationManager authManager, IAccountService service) {
+	private ITokenService tokenService;
+	
+    public JWTAuthenticationFilter(String url, AuthenticationManager authManager, IAccountService service, ITokenService tokenService) {
         super(new AntPathRequestMatcher(url));
         setAuthenticationManager(authManager);
         this.service = service;
+        this.tokenService = tokenService;
     }
 
     @Override
@@ -55,6 +59,6 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
     		HttpServletResponse response, 
     		FilterChain chain, 
     		Authentication authResult) throws IOException, ServletException {
-        JWTTokenService.addJWTTokenToHeader(response, authResult.getName(), service);
+        JWTTokenService.addJWTTokenToHeader(response, authResult.getName(), service, tokenService);
     }
 }

@@ -6,17 +6,26 @@ public class AccountDto {
 	private String username;
 	private String role;
 	private String fullName;
+	private String refreshToken;
 
 	public AccountDto(short id, String fullName) {
 		this.id = id;
 		this.fullName = fullName;
 	}
-
+	
 	public AccountDto(short id, String username, String role, String fullName) {
 		this.id = id;
 		this.username = username;
 		this.role = role;
 		this.fullName = fullName;
+	}
+
+	public AccountDto(short id, String username, String role, String fullName,String refreshToken) {
+		this.id = id;
+		this.username = username;
+		this.role = role;
+		this.fullName = fullName;
+		this.refreshToken = refreshToken;
 	}
 
 	public short getId() {
@@ -42,4 +51,13 @@ public class AccountDto {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public String getRefreshToken() {
+		return refreshToken;
+	}
+
+	public void setRefreshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
+	}
+	
 }

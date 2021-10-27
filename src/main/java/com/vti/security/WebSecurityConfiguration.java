@@ -10,6 +10,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.stereotype.Component;
 
 import com.vti.service.IAccountService;
+import com.vti.service.ITokenService;
 
 @Component
 @EnableWebSecurity
@@ -17,6 +18,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private IAccountService service;
+	
+	@Autowired
+	private ITokenService tokenService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -35,6 +39,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.httpBasic()
 			.and()
 			.csrf().disable()
-			.addFilterBefore(new JWTAuthenticationFilter("/api/v1/login",authenticationManager(), service), UsernamePasswordAuthenticationFilter.class);
+			.addFilterBefore(new JWTAuthenticationFilter("/api/v1/login",authenticationManager(), service, tokenService), UsernamePasswordAuthenticationFilter.class)
+			.addFilterBefore(new JWTAuthorizationFilter(service), UsernamePasswordAuthenticationFilter.class);
 	}
 }

@@ -31,3 +31,14 @@ CREATE TABLE `Account`(
     FOREIGN KEY(DepartmentID) REFERENCES Department(DepartmentID)  ON DELETE SET NULL
 );
 
+-- create table: RefreshTokenCode
+DROP TABLE IF EXISTS `Token`;
+CREATE TABLE `Token`(
+	TokenID					TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	RefreshTokenCode		VARCHAR(200) NOT NULL,
+    Username				VARCHAR(50),
+    CreateDate				DATETIME DEFAULT NOW(),
+    
+	FOREIGN KEY(Username) 	REFERENCES `Account`(Username)  ON DELETE SET NULL
+);
+
