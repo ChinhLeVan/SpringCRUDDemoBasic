@@ -34,10 +34,11 @@ public class DepartmentSpecification implements Specification<Department> {
 			Join<Department, Account> join1 = root.join("author", JoinType.LEFT);
 			return criteriaBuilder.like(join1.get("fullName"), "%" + value.toString() + "%");	
 		}
+		
 		if (operator.equals("LIKE")) {
 			return criteriaBuilder.like(root.get(field), "%" + value.toString() + "%");
 		}
-
+		
 		if (operator.equals("Year>=")) {
 			if (value instanceof Date) {
 				return criteriaBuilder.greaterThanOrEqualTo(root.get(field), (Date) value);
@@ -45,6 +46,7 @@ public class DepartmentSpecification implements Specification<Department> {
 				return criteriaBuilder.greaterThanOrEqualTo(root.get(field), value.toString());
 			}
 		}
+		
 		if (operator.equals("Year<")) {
 			if (value instanceof Date) {
 				return criteriaBuilder.lessThan(root.get(field), (Date) value);
@@ -52,6 +54,7 @@ public class DepartmentSpecification implements Specification<Department> {
 			return criteriaBuilder.lessThan(root.get(field), value.toString());
 			}
 		}
+		
 		if (operator.equals("Date<=")) {
 			if (value instanceof Date) {
 				return criteriaBuilder.lessThanOrEqualTo(root.get(field), (Date) value);

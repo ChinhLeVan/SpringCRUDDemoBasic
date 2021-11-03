@@ -38,8 +38,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.and()
 			.httpBasic()
 			.and()
-			.csrf().disable()
-			.addFilterBefore(new JWTAuthenticationFilter("/api/v1/login",authenticationManager(), service, tokenService), UsernamePasswordAuthenticationFilter.class)
-			.addFilterBefore(new JWTAuthorizationFilter(service), UsernamePasswordAuthenticationFilter.class);
+			.csrf().disable();
+			//.addFilterBefore(new JWTAuthenticationFilter("/api/v1/login",authenticationManager(), service, tokenService), UsernamePasswordAuthenticationFilter.class)
+			//.addFilterBefore(new JWTAuthorizationFilter(service), UsernamePasswordAuthenticationFilter.class);
 	}
 }
